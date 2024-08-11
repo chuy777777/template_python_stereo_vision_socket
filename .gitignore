@@ -1,0 +1,5 @@
+__pycache__/
+project/app/app_env
+project/app/pinhole_camera_model/optimal_parameters
+project/app/.env
+

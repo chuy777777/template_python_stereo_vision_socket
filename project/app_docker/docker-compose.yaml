@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  app:
+    build: 
+      dockerfile: app_docker/Dockerfile
+      context: ../
+    image: template_python_stereo_vision_socket:v1
+    container_name: template_python_stereo_vision_socket
+    env_file: ./../app/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DISPLAY=$DISPLAY
+    privileged: true
+    volumes:
+      - volume_template_python_stereo_vision_socket:/app
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro    # UI
+      - /dev:/dev:ro                        # USB Devices
+    ports:
+      - 5000:5000/tcp
+    networks:
+      - network_template_python_stereo_vision_socket
+
+volumes:
+  volume_template_python_stereo_vision_socket:
+    name: volume_template_python_stereo_vision_socket
+    external: false
+
+networks:
+  network_template_python_stereo_vision_socket:
+    name: network_template_python_stereo_vision_socket
+    external: true
